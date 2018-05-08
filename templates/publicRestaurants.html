@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+{% block reusable_content %}
+
+	<div class="restaurant_container">
+		<div class="">
+			<h2 class="heading">Restaurants</h2>
+		</div>
+		<div class="public_rest_container">
+			<div class="rest_div">
+				<div class="col-xs-12">
+				<div class=" add_div">
+					<a href="{{url_for('newRestaurant')}}" class="" >
+						<span class="add_div_plus">+</span>
+						<span class="add_div_text">Add New Restaurant</span>
+					</a>
+				</div>
+				</div>
+			{% for restaurant in restaurants %}
+		
+			<div class="rest_div_child">
+				<h4 class="rest_name">{{restaurant.name}}</h4>
+				<div class="icons-div">
+					<a href="{{url_for('restaurantMenu',restaurant_id=restaurant.id)}}">
+						<img src="/static/menu-icon-3.png">
+					</a>
+					<a href="{{url_for('editRestaurant',restaurant_id=restaurant.id)}}">
+						<img src="/static/edit-icon.png">
+					</a>
+					<a href="{{url_for('deleteRestaurant',restaurant_id=restaurant.id)}}">
+						<img src="/static/delete-icon.png">
+					</a>
+				</div>
+			</div>
+		
+	
+			{% endfor %}
+			</div>
+			</div>
+		</div>
+	
+{% endblock %}

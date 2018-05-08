@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Restaurant_Project</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/styles_final.css') }}">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row menu-bar">
+			<div class="col-6">
+				<div>
+					<a href="{{url_for('restaurantList')}}">
+						<img src="/static/home-icon.png" height="30px">
+					</a>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="login_btn">
+						{%if 'username' not in session %}
+						<a href="{{url_for('showLogin')}}">Login </a>
+						{% else %}
+						<a href="{{url_for('disconnect')}}">Logout </a>
+						{% endif %}
+
+
+				<!-- <a href="{{url_for('showLogin')}}" class="">LOGIN</a> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="top-banner">
+		<img src="/static/top-banner-bg.jpg" class="">
+	</div> -->
+	<div class="main-container">
+	{% block reusable_content %}
+	{% endblock %}
+	</div>
+	<div id = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <div id="popup_bg">
+        	<div id="popup"" style="">
+        		<div class="popup_inner message_popup">
+        			{{messages[0]}}
+        		</div>
+        		<div class="popup_inner message_popup">
+        			<button id="closebtn" class="popup_btn">OK</button>
+        		</div>
+        		
+        	</div>
+        </div>
+        {% endif %}
+    {% endwith %}
+
+	</div>
+	<div>
+		{% block login_content %}
+		{% endblock %}
+	</div>
+	<script>
+	function close(){
+		var popup_bg=document.getElementById("popup_bg")
+		popup_bg.style.display="none"
+	}
+	var close_btn=document.getElementById("closebtn")
+	close_btn.onclick = close;
+	
+	</script>
+</body>
+</html>

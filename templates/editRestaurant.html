@@ -1,0 +1,39 @@
+{% extends 'side_menu_template.html' %}
+
+
+{% block creator_content %}
+<div class="creator_div">
+	<h2 class="rest_name">{{restaurant.name}}</h2>
+	<h6>created by</h6>
+	<img src="{{creator.picture}}"  width="100%">
+	<h3 class="creator_name">{{creator.name}}</h3>
+</div>
+{% endblock %}
+
+
+{% block side_menu_list %}
+<h6>Other Restaurants</h6>
+			<div class="">
+				<ul class="rest_list">
+					{% for rest in all_restaurants %}
+						<li><a href="{{url_for('editRestaurant',restaurant_id=rest.id)}}">{{rest.name}}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+{% endblock %}
+
+{% block col_9_content %}
+
+	<h2 class="form_heading">Edit Restaurant</h2>
+	<form action="{{url_for('editRestaurant', restaurant_id=restaurant_id)}}" method="POST">
+		<label>Name:</label>
+		<input type="text" name="restaurant_name" placeholder="{{restaurant.name}}"><br/>
+		<div class="buttons_div">
+		<input type="submit" value="Edit" class="form_buttons">
+		<a href = "{{url_for('restaurantList')}}">
+			<button class="form_buttons" type="button">Cancel</button>
+		</a>
+		</div>
+	</form>
+
+{% endblock %}

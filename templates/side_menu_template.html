@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% block reusable_content %}
+
+	<div class="row menu_container">
+		<div class="col-md-3 col-sm-5 col-5 side_menu">
+			{% block creator_content %}
+			{% endblock %}
+			<hr style="margin: 0">
+			<div class="side_menu_list">
+
+			{% block side_menu_list %}
+			{% endblock %}
+			</div>
+		</div>
+		<div class="col-md-9 col-sm-7 col-7">
+			{% block col_9_content %}
+			{% endblock %}
+		</div>
+	</div>
+
+{% endblock %}

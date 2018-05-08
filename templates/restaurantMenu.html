@@ -1,0 +1,127 @@
+{% extends 'side_menu_template.html' %}
+
+
+{% block creator_content %}
+<div class="creator_div">
+	<h2 class="rest_name">{{restaurant.name}}</h2>
+	<h6>created by</h6>
+	<img src="{{creator.picture}}"  width="100%">
+	<h3 class="creator_name">{{creator.name}}</h3>
+</div>
+{% endblock %}
+
+
+{% block side_menu_list %}
+<h6 style="margin-left: 15px">Other Restaurants</h6>
+			<div class="">
+				<ul class="rest_list">
+					{% for rest in all_restaurants %}
+						<li><a href="{{url_for('restaurantMenu',restaurant_id=rest.id)}}">{{rest.name}}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+{% endblock %}
+
+{% block col_9_content %}
+	<div class="col-xs-12">
+		<div class="add_div">
+					<a href="{{url_for('newMenuItem',restaurant_id=restaurant.id)}}" class="" >
+						<span class="add_div_plus">+</span>
+						<span class="add_div_text">Add New Item</span>
+					</a>
+		</div>
+		
+	</div>
+	<div class="menu-container">
+		<div class="menu_section_div">
+			<h3 class="course_heading">Appetizers</h3>
+			<hr>
+			{% for item in items %}
+			{% if item.course=='Appetizer' %}
+				<div class="menu_detail row">
+					<div class="left_details col-8">
+						<h4 class="item_name">{{item.name}}</h4>
+						<p class="item_desc">{{item.description}}</p>
+					</div>
+					<div class="right_details col-4">
+						<h4 class="item_price">{{item.price}}</h4>
+						<div class="action_div">
+						<a href="{{url_for('editMenuItem', restaurant_id=restaurant.id,menu_id=item.id)}}"><img src="/static/edit-icon.png" width="20px"></a>
+						<a href="{{url_for('deleteMenuItem',restaurant_id=restaurant.id,menu_id=item.id)}}"><img src="/static/delete-icon.png" width="20px"></a>
+						</div>
+					</div>
+				</div>
+				<hr>
+			{% endif %}
+			{% endfor %}
+		</div>
+		<div class="menu_section_div">
+			<h3 class="course_heading">Entree</h3>
+			<hr>
+			{% for item in items %}
+			{% if item.course=='Entree' %}
+				<div class="menu_detail row">
+					<div class="left_details col-8">
+						<h4 class="item_name">{{item.name}}</h4>
+						<p class="item_desc">{{item.description}}</p>
+					</div>
+					<div class="right_details col-4">
+						<h4 class="item_price">{{item.price}}</h4>
+						<div class="action_div">
+						<a href="{{url_for('editMenuItem', restaurant_id=restaurant.id,menu_id=item.id)}}"><img src="/static/edit-icon.png" width="20px"></a>
+						<a href="{{url_for('deleteMenuItem',restaurant_id=restaurant.id,menu_id=item.id)}}"><img src="/static/delete-icon.png" width="20px"></a>
+						</div>
+					</div>
+				</div>
+				<hr>
+			{% endif %}
+			{% endfor %}
+		</div>
+		<div class="menu_section_div">
+			<h3 class="course_heading">Dessert</h3>
+			<hr>
+			{% for item in items %}
+			{% if item.course=='Dessert' %}
+				<div class="menu_detail row">
+					<div class="left_details col-8">
+						<h4 class="item_name">{{item.name}}</h4>
+						<p class="item_desc">{{item.description}}</p>
+					</div>
+					<div class="right_details col-4">
+						<h4 class="item_price">{{item.price}}</h4>
+						<div class="action_div">
+						<a href="{{url_for('editMenuItem', restaurant_id=restaurant.id,menu_id=item.id)}}"><img src="/static/edit-icon.png" width="20px"></a>
+						<a href="{{url_for('deleteMenuItem',restaurant_id=restaurant.id,menu_id=item.id)}}"><img src="/static/delete-icon.png" width="20px"></a>
+						</div>
+					</div>
+				</div>
+				<hr>
+			{% endif %}
+			{% endfor %}
+		</div>
+		<div class="menu_section_div">
+			<h3 class="course_heading">Beverage</h3>
+			<hr>
+			{% for item in items %}
+			{% if item.course=='Beverage' %}
+				<div class="menu_detail row">
+					<div class="left_details col-8">
+						<h4 class="item_name">{{item.name}}</h4>
+						<p class="item_desc">{{item.description}}</p>
+					</div>
+					<div class="right_details col-4">
+						<h4 class="item_price">{{item.price}}</h4>
+						<div class="action_div">
+						<a href="{{url_for('editMenuItem', restaurant_id=restaurant.id,menu_id=item.id)}}"><img src="/static/edit-icon.png" width="20px"></a>
+						<a href="{{url_for('deleteMenuItem',restaurant_id=restaurant.id,menu_id=item.id)}}"><img src="/static/delete-icon.png" width="20px"></a>
+						</div>
+					</div>
+				</div>
+				<hr>
+			{% endif %}
+			{% endfor %}
+		</div>
+		
+	</div>
+{% endblock %}
+

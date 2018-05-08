@@ -1,0 +1,59 @@
+{% extends 'side_menu_template.html' %}
+{% block creator_content %}
+<div class="creator_div">
+	<h2 class="rest_name">{{restaurant.name}}</h2>
+	<h6>created by</h6>
+	<img src="{{creator.picture}}"  width="100%">
+	<h3 class="creator_name">{{creator.name}}</h3>
+</div>
+{% endblock %}
+{% block side_menu_list %}
+<h6 style="margin-left: 15px">Menu Items</h6>
+			<div class="">
+				<ul class="rest_list">
+					{% for item in all_menu_items %}
+						<li><a href="{{url_for('editMenuItem',restaurant_id=item.restaurant_id,menu_id=item.id)}}">{{item.name}}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+{% endblock %}
+
+{% block col_9_content %}
+
+	<h2 class="form_heading">Edit Menu Item</h2>
+	<form action="{{url_for('editMenuItem',restaurant_id=restaurant_id,menu_id=menu_id)}}" method="POST">
+		<label>Name:</label>
+		<input type="text" name="edited_menu_name" placeholder="{{menu.name}}"><br/>
+		<label>Price:</label>
+		<input type="text" name="edited_menu_price" placeholder="{{menu.price}}"><br/>
+		<label>Course:</label>
+		<div class="radio">
+					  <label>
+					    <input type="radio" name="edited_menu_course" id="course1" value="Appetizer" {% if menu.course == 'Appetizer'%}checked{%endif%}> Appetizer
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="edited_menu_course" id="course2" value="Entree" {% if menu.course == 'Entree' %}checked{%endif%}> Entree
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="edited_menu_course" id="course3" value="Dessert" {% if menu.course == 'Dessert'%}checked{%endif%}> Dessert
+					  </label>
+					</div>
+					<div class="radio">
+					  <label>
+					    <input type="radio" name="edited_menu_course" id="course4" value="Beverage" {%if menu.course =='Beverage'%}checked{%endif%}> Beverage
+					  </label>
+					</div>
+		<label>Description:</label>
+		<textarea class="form-control" maxlength="250" rows="3" name="edited_menu_description" placeholder="{{menu.description}}"></textarea></br>
+		<div class="buttons_div">
+		<input type="submit" value="Edit" class="form_buttons">
+		<a href = "{{url_for('restaurantMenu', restaurant_id = menu.restaurant_id)}}">
+			<button class="form_buttons" type="button">Cancel</button>
+		</a>
+		</div>
+	</form>
+{% endblock %}
