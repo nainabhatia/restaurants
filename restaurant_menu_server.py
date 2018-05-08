@@ -23,7 +23,9 @@ APPLICATION_NAME = "Restaurant Project"
 
 
 #database conncttion
-engine= create_engine('sqlite:///project_catalog_with_users.db')
+engine = create_engine('postgresql://catalog:catalog@localhost/catalog')
+
+#engine= create_engine('sqlite:///project_catalog_with_users.db')
 Base.metadata.bind = engine
 DBSession =sessionmaker(bind=engine)
 session =DBSession()
